@@ -23,6 +23,7 @@ const map = new Map({
 });
 
 const sportsList = document.querySelector('#sports-list');
+var layersList = []
 
 function rendervenues(doc){
   var layer = new VectorLayer({
@@ -30,7 +31,7 @@ function rendervenues(doc){
         features: [
             new Feature({
               geometry: new Point(fromLonLat([doc.data().location._long, doc.data().location._lat])),
-              name: 'Somewhere near Nottingham',
+              name: doc.data().name,
             })
         ]
     }),
@@ -44,11 +45,24 @@ function rendervenues(doc){
     })
   });
   map.addLayer(layer);
+  layersList.push(layer);
 }
 
-db.collection("venues").limit(3)
+function valueChanged(){
+    layersList.forEach(layer => {
+        map.removeLayer(layer)
+    });
+    layersList = []
+
+    var myselect = document.getElementById("sports");
+    var sport = myselect.options[myselect.selectedIndex].value;
+
+    db.collection("venues").where("sport", "==", sport.toLowerCase()).limit(3)
     .onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           rendervenues(doc)
         });
     });
+  }
+
+document.getElementById("sports").addEventListener("change", valueChanged);

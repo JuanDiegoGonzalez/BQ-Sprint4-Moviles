@@ -24,11 +24,9 @@ h2{
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   max-width: 480px;
   margin: 30px auto;
 }
-
 
 .box{
   border:1px solid #d9d9d9;
@@ -39,7 +37,6 @@ h2{
 }
 
 select {
-  background: transparent;
   border: none;
   font-size: 14px;
   height: 30px;
@@ -63,6 +60,6 @@ select:focus{ outline: none;}
 }
 
 #map {
-  height: 49rem;
+  height: 45rem;
   width: 100%;
 }
