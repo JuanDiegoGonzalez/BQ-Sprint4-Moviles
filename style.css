@@ -1,0 +1,68 @@
+@import "node_modules/ol/ol.css";
+
+body{
+  background: #4ec5ad;
+  font-family: ubuntu;
+}
+
+h1{
+  color: #121212;
+  font-size: 64px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+h2{
+  color: #121212;
+  text-align: center;
+}
+
+.selector{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 480px;
+  margin: 30px auto;
+}
+
+
+.box{
+  border:1px solid #d9d9d9;
+  height:30px;
+  overflow: hidden;
+  width: 230px;
+  position:relative;
+}
+
+select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px;
+  width: 250px;
+}
+select:focus{ outline: none;}
+
+.box::after{
+	content:"\025be";
+	display:table-cell;
+	padding-top:7px;
+	text-align:center;
+	width:30px;
+	height:30px;
+	background-color:#d9d9d9;
+	position:absolute;
+	top:0;
+	right:0px;	
+	pointer-events: none;
+}
+
+#map {
+  height: 49rem;
+  width: 100%;
+}
