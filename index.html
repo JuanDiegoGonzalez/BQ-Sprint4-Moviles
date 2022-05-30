@@ -9,7 +9,7 @@
     <title>Business Question</title>
   </head>
   <body>
-    <h1>Athletim</h1>
+    <h1 id="title">Athletim</h1>
     <h2>Type 5 Business Question: What is the geographic distribution of the venues for each sport?</h2>
     <div class="selector">
       <div class="box">
@@ -23,7 +23,16 @@
         </select>
       </div>
     </div>
-    <div id="map"></div>
+    <div id="main">
+      <div id="map"></div>
+      <div id="info">
+        <div id="Vname"> &nbsp; </div>
+        <div id="Vaddress"> &nbsp; </div>
+        <div id="Vdescription"> &nbsp; </div>
+        <div id="Vrating"> &nbsp; </div>
+        <div id="Vindoor"> &nbsp; </div>
+      </div>
+    </div>
     <script>
       var config = {
           apiKey: "AIzaSyBf-bAp6e6qD9G0QNpTkHR1pNHVkDen3BU",

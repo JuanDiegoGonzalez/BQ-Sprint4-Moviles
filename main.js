@@ -22,6 +22,44 @@ const map = new Map({
   })
 });
 
+const venueName = document.getElementById('Vname');
+const venueAddress = document.getElementById('Vaddress');
+const venueDescription = document.getElementById('Vdescription');
+const venueRating = document.getElementById('Vrating');
+const venueIndoor = document.getElementById('Vindoor');
+let selected = null;
+map.on('pointermove', function (e) {
+  if (selected !== null) {
+    selected.setStyle(undefined);
+    selected = null;
+  }
+
+  map.forEachFeatureAtPixel(e.pixel, function (f) {
+    selected = f;
+    return true;
+  });
+
+  if (selected) {
+    var information = selected.get('name').split('///')
+    venueName.innerHTML = "Name: " + information[0];
+    venueAddress.innerHTML = "Address: " + information[1];
+    venueDescription.innerHTML = "Description: " + information[2];
+    venueRating.innerHTML = "Rating: " + information[3];
+    if (information[4] == 'true') {
+      venueIndoor.innerHTML = "Indoor";
+    }
+    else {
+      venueIndoor.innerHTML = "Outdoor";
+    }
+  } else {
+    venueName.innerHTML = '&nbsp;';
+    venueAddress.innerHTML = '&nbsp;';
+    venueDescription.innerHTML = '&nbsp;';
+    venueRating.innerHTML = '&nbsp;';
+    venueIndoor.innerHTML = '&nbsp;';
+  }
+});
+
 const sportsList = document.querySelector('#sports-list');
 var layersList = []
 
@@ -31,7 +69,7 @@ function rendervenues(doc){
         features: [
             new Feature({
               geometry: new Point(fromLonLat([doc.data().location._long, doc.data().location._lat])),
-              name: doc.data().name,
+              name: doc.data().name + "///" + doc.data().address + "///" + doc.data().description + "///" + doc.data().rating + "///" + doc.data().indoor
             })
         ]
     }),
@@ -57,7 +95,12 @@ function valueChanged(){
     var myselect = document.getElementById("sports");
     var sport = myselect.options[myselect.selectedIndex].value;
 
-    db.collection("venues").where("sport", "==", sport.toLowerCase()).limit(3)
+    var limit = 6
+    if (sport.toLowerCase() == 'tennis') {
+      limit = 11
+    }
+
+    db.collection("venues").where("sport", "==", sport.toLowerCase()).limit(limit)
     .onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           rendervenues(doc)
