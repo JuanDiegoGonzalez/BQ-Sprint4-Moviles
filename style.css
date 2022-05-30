@@ -7,16 +7,18 @@ body{
 
 h1{
   color: #121212;
-  font-size: 6.4vh;
+  font-size: 7vh;
   letter-spacing: 0.2vh;
   margin-top: 2vh;
-  margin-bottom: 1.5vh;
+  margin-bottom: 0vh;
   text-align: center;
 }
 
 h2{
   color: #121212;
   text-align: center;
+  font-size: 3.6vh;
+  margin-top: 2vh;
 }
 
 .selector{
@@ -32,7 +34,7 @@ h2{
 
 .box{
   border:0.1vh solid #d9d9d9;
-  height:3.1vh;
+  height:4.1vh;
   overflow: hidden;
   width: 23vh;
   position:relative;
@@ -40,8 +42,8 @@ h2{
 
 select {
   border: none;
-  font-size: 1.8vh;
-  height: 3.1vh;
+  font-size: 2.6vh;
+  height: 4.1vh;
   padding: 0.5vh;
   width: 25vh;
 }
@@ -50,10 +52,10 @@ select:focus{ outline: none;}
 .box::after{
 	content:"\025be";
 	display:table-cell;
-	padding-top:0.3vh;
+	padding-top:0.8vh;
 	text-align:center;
 	width:3vh;
-	height:3vh;
+	height:4.1vh;
 	background-color:#d9d9d9;
 	position:absolute;
 	top:0;
